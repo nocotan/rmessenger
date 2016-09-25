@@ -3,3 +3,6 @@
 
 ##A Rust Wrapper for the FaceBook Messenger Bot API
 [Facebook's Messenger Platform](https://developers.facebook.com/docs/messenger-platform)
+
+###About
+- send text message

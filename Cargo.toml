@@ -1,0 +1,11 @@
+[package]
+name = "rmessenger"
+version = "0.1.0"
+authors = ["nocotan <noconoco.lib@gmail.com>"]
+repository = "https://github.com/nocotan/rmessenger"
+keywords = ["facebook", "bot"]
+license-file = "LICENSE"
+readme = "README.md"
+description = "A Rust Wrapper for the FaceBook Messenger Bot API"
+
+[dependencies]

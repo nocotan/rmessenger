@@ -1,3 +1,7 @@
+extern crate hyper;
+
+use self::hyper::client::Response;
+
 mod graph_api;
 mod utils;
 
@@ -18,9 +22,8 @@ impl Bot {
             + "/me/messages";
 
         let request = utils::UrlRequest::new();
-        request.post(request_endpoint, "0000");
-        let response= "";
+        let response = request.post(request_endpoint, "0000");
 
-        response.to_string()
+        response.status.to_string()
     }
 }

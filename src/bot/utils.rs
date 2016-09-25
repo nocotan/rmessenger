@@ -2,6 +2,7 @@ extern crate hyper;
 extern crate multipart;
 
 use self::hyper::client::Request;
+use self::hyper::client::Response;
 use self::hyper::method::Method;
 use self::hyper::net::Streaming;
 
@@ -15,7 +16,7 @@ impl UrlRequest {
         UrlRequest { }
     }
 
-    pub fn post(self, url: String, data: &str) {
+    pub fn post(self, url: String, data: &str) -> Response {
         let req = Request::new(Method::Post, url.parse().expect("Failed"))
             .expect("Failed to create request");
 
@@ -24,8 +25,6 @@ impl UrlRequest {
 
         multipart.write_text("text", data);
 
-        let _response = multipart.send().expect("Failed to send request");
-
-        println!("{}", _response.status);
+        multipart.send().expect("Failed to send request")
     }
 }

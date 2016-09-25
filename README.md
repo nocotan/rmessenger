@@ -5,4 +5,5 @@
 [Facebook's Messenger Platform](https://developers.facebook.com/docs/messenger-platform)
 
 ###About
-- send text message
+you can:
+- send message

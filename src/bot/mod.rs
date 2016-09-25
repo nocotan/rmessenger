@@ -1,4 +1,5 @@
 mod graph_api;
+mod utils;
 
 
 pub struct Bot {
@@ -16,6 +17,8 @@ impl Bot {
         let request_endpoint = self.api.get_graph_url()
             + "/me/messages";
 
+        let request = utils::UrlRequest::new();
+        request.post(request_endpoint, "0000");
         let response= "";
 
         response.to_string()

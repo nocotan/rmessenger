@@ -9,3 +9,4 @@ readme = "README.md"
 description = "A Rust Wrapper for the FaceBook Messenger Bot API"
 
 [dependencies]
+rustc-serialize = "*"

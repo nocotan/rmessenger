@@ -16,7 +16,7 @@ impl UrlRequest {
         UrlRequest { }
     }
 
-    pub fn post(self, url: String, data: &str) -> Response {
+    pub fn post(self, url: String, data: String) -> Response {
         let req = Request::new(Method::Post, url.parse().expect("Failed"))
             .expect("Failed to create request");
 

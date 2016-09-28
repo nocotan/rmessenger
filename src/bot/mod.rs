@@ -7,22 +7,29 @@ mod utils;
 
 
 pub struct Bot {
-    api: graph_api::FacebookGraphApi,
+    access_token: String,
+    app_secret: String,
 }
 
 impl Bot {
     pub fn new(access_token: &str, app_secret: &str) -> Bot {
         Bot {
-            api: graph_api::FacebookGraphApi::new(access_token, app_secret)
+            access_token: access_token.to_string(),
+            app_secret: app_secret.to_string(),
         }
     }
 
     pub fn send_raw(self, payload: &str) -> String {
-        let request_endpoint = self.api.get_graph_url()
-            + "/me/messages";
+        let root_api = graph_api::FacebookGraphApi::new(self.access_token, self.app_secret);
+        let api = graph_api::FacebookGraphApi{..root_api};
+
+        let request_endpoint = api.auth_url();
 
         let request = utils::UrlRequest::new();
-        let response = request.post(request_endpoint, "0000");
+
+        let access_token = api.get_access_token();
+        let body = format!("{}{}", "access_token=", access_token);
+        let response = request.post(request_endpoint, body);
 
         response.status.to_string()
     }

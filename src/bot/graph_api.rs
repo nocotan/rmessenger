@@ -4,20 +4,24 @@
 /// ###optional:
 /// - app_secret
 pub struct FacebookGraphApi {
-    api_version: f32,
-    app_secret: String,
-    graph_url: String,
-    access_token: String,
+    pub api_version: f32,
+    pub app_secret: String,
+    pub graph_url: String,
+    pub access_token: String,
 }
 
 impl FacebookGraphApi {
-    pub fn new(access_token: &str, app_secret: &str) -> FacebookGraphApi {
+    pub fn new(access_token: String, app_secret: String) -> FacebookGraphApi {
         FacebookGraphApi {
             api_version: 2.6,
-            app_secret: app_secret.to_string(),
+            app_secret: app_secret,
             graph_url: "https://graph.facebook.com/v2.6".to_string(),
-            access_token: access_token.to_string(),
+            access_token: access_token,
         }
+    }
+
+    pub fn auth_url(self) -> String {
+        format!("{}{}", self.get_graph_url(), "/me/messages")
     }
 
     pub fn get_app_secret(self) -> String {

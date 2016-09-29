@@ -12,6 +12,9 @@ you can:
 
 ###Usage
 
+####Send text message
+https://developers.facebook.com/docs/messenger-platform/send-api-reference/text-message
+
 ```
 extern crate rmessenger;
 use rmessenger::bot;

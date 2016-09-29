@@ -30,7 +30,7 @@ impl UrlRequest {
                                 ));
 
         let mut client = Client::new();
-        let mut res = client.post("https://graph.facebook.com/v2.6/me/messages?access_token=EAACXVkA4ZCL8BAK6UGzJxeqt4M8HxUsWyH4yZCZA68iRsSNZAyP9ZBNb6lZC7F5p5Wrnd9ZCZCZA7hL9fcqcbYsZBmO6aOTuFBX08oiFtj1vU9XLsLDEzZC3THwwHoj6sMYJVf7wvdGF5oCWEaOAl2kl934EyyOeT2P9f5oXHffM6ovRAZDZD")
+        let mut res = client.post(&request_url.to_owned())
                             .headers(headers)
                             .body(&body.to_owned())
                             .send();

@@ -11,7 +11,7 @@ impl Bot {
         Bot {
             access_token: access_token.to_string(),
             app_secret: app_secret.to_string(),
-            graph_url: "https://graph.facebook.com/v2.6".to_string(),
+            graph_url: "https://graph.facebook.com/v2.7".to_string(),
         }
     }
 
@@ -64,6 +64,25 @@ impl Bot {
                 }}
              }}",
              recipient_id, text, buttons);
+
+        self.send_raw(payload.to_string())
+    }
+
+    /// send file url to the specified recipient.
+    pub fn send_file_url(self, recipient_id: &str, file_url: &str) -> String {
+        let payload = format!(
+            "{{
+                'recipient_id': {{'id': {} }},
+                'message': {{
+                  'attachment': {{
+                    'type': 'file',
+                    'payload': {{
+                      'url': {}
+                    }}
+                  }}
+                }}
+              }}",
+              recipient_id, file_url);
 
         self.send_raw(payload.to_string())
     }

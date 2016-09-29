@@ -25,6 +25,8 @@ fn main() {
 }
 ````
 
+####Send generic message
+
 ```rust:send_generic_message.rs
 extern crate rmessenger;
 use rmessenger::bot;

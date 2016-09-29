@@ -15,7 +15,7 @@ you can:
 ####Send text message
 https://developers.facebook.com/docs/messenger-platform/send-api-reference/text-message
 
-```rust:send_text_message.rs
+```rust
 extern crate rmessenger;
 use rmessenger::bot;
 
@@ -27,7 +27,7 @@ fn main() {
 
 ####Send generic message
 
-```rust:send_generic_message.rs
+```rust
 extern crate rmessenger;
 use rmessenger::bot;
 

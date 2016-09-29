@@ -10,6 +10,7 @@ you can:
 - send text message
 - send generic message
 - send button message
+- send file url
 
 ###Installation
 

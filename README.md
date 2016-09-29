@@ -11,6 +11,11 @@ you can:
 
 ###Installation
 
+####Cargo.toml
+```
+rmessenger = "0.0.1"
+```
+
 ###Usage
 
 ####Send text message

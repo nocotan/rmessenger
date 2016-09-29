@@ -47,6 +47,27 @@ impl Bot {
         self.send_raw(payload.to_string())
     }
 
+    /// send button message to the specified recipient.
+    pub fn send_button_message(self, recipient_id: &str, text: &str, buttons: &str) -> String {
+        let payload = format!(
+            "{{
+                'recipient': {{'id': {} }},
+                'message': {{
+                  'attachment': {{
+                    'type': 'template',
+                    'payload': {{
+                      'template_type': 'button',
+                      'text': {},
+                      'buttons': buttons
+                    }}
+                  }}
+                }}
+             }}",
+             recipient_id, text, buttons);
+
+        self.send_raw(payload.to_string())
+    }
+
     fn send_raw(self, payload: String) -> String {
         let request_endpoint = format!("{}{}", self.graph_url, "/me/messages");
         let url_request = utils::UrlRequest::new();

@@ -16,13 +16,20 @@ impl Bot {
         }
     }
 
-    pub fn send_raw(self, payload: &str) {
+    pub fn send_text_message(self, recipient_id: &str, message: &str) -> String {
+        let payload = format!("{}{}{}{}{}",
+                              "{'recipient': {'id':", recipient_id.to_string(), "},
+                              'message': {'text': '", message, "'}}");
+        self.send_raw(payload.to_string())
+    }
+
+    fn send_raw(self, payload: String) -> String {
         let request_endpoint = format!("{}{}", self.graph_url, "/me/messages");
         let url_request = utils::UrlRequest::new();
 
         let data = format!("{}{}", "access_token=", self.access_token).to_string();
 
-        let body = "{'recipient': {'id': 1156130217782534}, 'message': {'text': 'test'}}".to_string();
-        let response = url_request.post(request_endpoint, data, body);
+
+        url_request.post(request_endpoint, data, payload)
     }
 }

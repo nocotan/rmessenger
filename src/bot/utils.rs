@@ -37,6 +37,7 @@ impl UrlRequest {
 
         let mut response_body = String::new();
         res.unwrap().read_to_string(&mut response_body).unwrap();
+        println!("{}", response_body);
 
         response_body
     }

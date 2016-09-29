@@ -1,6 +1,5 @@
 mod utils;
 
-
 pub struct Bot {
     access_token: String,
     app_secret: String,
@@ -20,10 +19,30 @@ impl Bot {
     pub fn send_text_message(self, recipient_id: &str, message: &str) -> String {
         let payload = format!(
             "{{
-                'recipient': {{'id':{} }},
+                'recipient': {{'id': {} }},
                 'message': {{'text': '{}'}}
              }}",
              recipient_id, message);
+
+        self.send_raw(payload.to_string())
+    }
+
+    /// send generic message to the specified recipient.
+    pub fn send_generic_message(self, recipient_id: &str, elements: &str) -> String {
+        let payload = format!(
+            "{{
+                'recipient': {{'id': {} }},
+                'message': {{
+                  'attachment': {{
+                    'type': 'template',
+                    'payload': {{
+                      'template_type': 'generic',
+                      'elements': {}
+                    }}
+                  }}
+                }}
+            }}",
+            recipient_id, elements);
 
         self.send_raw(payload.to_string())
     }

@@ -16,7 +16,7 @@ you can:
 
 ####Cargo.toml
 ```
-rmessenger = "0.0.1"
+rmessenger = "0.0.3"
 ```
 
 ###Usage

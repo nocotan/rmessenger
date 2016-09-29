@@ -18,8 +18,12 @@ impl Bot {
 
     pub fn send_text_message(self, recipient_id: &str, message: &str) -> String {
         let payload = format!("{}{}{}{}{}",
-                              "{'recipient': {'id':", recipient_id.to_string(), "},
-                              'message': {'text': '", message, "'}}");
+                              "{'recipient':
+                                 {'id':", recipient_id,"},
+                              'message':
+                                 {'text': '", message, "'}
+                               }"
+                             );
         self.send_raw(payload.to_string())
     }
 

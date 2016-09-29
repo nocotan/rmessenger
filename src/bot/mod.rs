@@ -1,12 +1,4 @@
-extern crate hyper;
-extern crate multipart;
-
-use self::hyper::client::Request;
-use self::hyper::client::Response;
-use self::hyper::method::Method;
-use self::hyper::net::Streaming;
-
-use self::multipart::client::Multipart;
+mod utils;
 
 
 pub struct Bot {
@@ -26,16 +18,10 @@ impl Bot {
 
     pub fn send_raw(self, payload: &str) {
         let mut request_endpoint = format!("{}{}", self.graph_url, "/me/messages");
+        let url_request = utils::UrlRequest::new();
 
-        println!("{}", request_endpoint);
-
-        let request = Request::new(Method::Post,
-                                   request_endpoint.to_string().parse().expect("Failed")
-                                   ).expect("Failed");
-        let mut multipart = Multipart::from_request(request).expect("Failed");
-
-        let body = format!("{}{}", "access_token=", self.access_token);
-        let response = multipart.send().expect("Failed");
+        let mut body = format!("{}{}", "access_token=", self.access_token);
+        let response = url_request.post(request_endpoint.to_string(), body.to_string());
 
         println!("{}", response.status.to_string());
 

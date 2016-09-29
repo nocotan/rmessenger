@@ -15,8 +15,8 @@ impl UrlRequest {
         UrlRequest { }
     }
 
-    pub fn post(self, url: String, body: String, data: String) -> Response {
-        let mut request_url = format!("{}{}{}", url, "?", body);
+    pub fn post(self, url: String, data: String) -> Response {
+        let mut request_url = format!("{}{}{}", url, "?", data);
         println!("{}", request_url);
 
         let request = Request::new(
@@ -25,7 +25,6 @@ impl UrlRequest {
             ).expect("Failed to create request.");
 
         let mut multipart = Multipart::from_request(request).expect("Failed to create multipart.");
-        multipart.write_text("data", data.to_string());
         multipart.send().expect("Failed to send request")
     }
 }

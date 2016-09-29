@@ -25,7 +25,6 @@ impl Bot {
         let data = "{'recipient': {'id': 1156130217782534}, 'message': {'text': 'test'}}";
         let response = url_request.post(request_endpoint.to_string(), body.to_string(), data.to_string());
 
-        println!("{}", response.status.to_string());
 
     }
 }

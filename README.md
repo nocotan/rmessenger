@@ -6,7 +6,8 @@
 
 ###About
 you can:
-- send message
+- send text message
+- send generic message
 
 ###Installation
 

@@ -12,4 +12,12 @@ you can:
 
 ###Usage
 
-#example
+```
+extern crate rmessenger;
+use rmessenger::bot;
+
+fn main() {
+    let bot = bot::Bot::new("<YOUR ACCESS TOKEN>", "<YOUR APP SECRET>");
+    bot.send_text_message("<recipient_id>", "<message>");
+}
+````

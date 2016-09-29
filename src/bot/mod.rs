@@ -16,14 +16,15 @@ impl Bot {
         }
     }
 
+    /// send text messages to the specified recipient.
     pub fn send_text_message(self, recipient_id: &str, message: &str) -> String {
-        let payload = format!("{}{}{}{}{}",
-                              "{'recipient':
-                                 {'id':", recipient_id,"},
-                              'message':
-                                 {'text': '", message, "'}
-                               }"
-                             );
+        let payload = format!(
+            "{{
+                'recipient': {{'id':{} }},
+                'message': {{'text': '{}'}}
+             }}",
+             recipient_id, message);
+
         self.send_raw(payload.to_string())
     }
 

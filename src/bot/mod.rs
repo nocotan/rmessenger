@@ -58,7 +58,7 @@ impl Bot {
                     'payload': {{
                       'template_type': 'button',
                       'text': {},
-                      'buttons': buttons
+                      'buttons': {}
                     }}
                   }}
                 }}

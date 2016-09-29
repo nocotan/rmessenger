@@ -24,3 +24,20 @@ fn main() {
     bot.send_text_message("<recipient_id>", "<message>");
 }
 ````
+
+```rust:send_generic_message.rs
+extern crate rmessenger;
+use rmessenger::bot;
+
+fn main() {
+    let bot = bot::Bot::new("<YOUR ACCESS TOKEN>", "<YOUR APP SECRET>");
+    bot.send_generic_message("<recipient_id>>",
+                             "[{'title': 'example',
+                                'image_url': 'https://petersfancybrownhats.com/company_image.png'
+                                }]");
+}
+````
+
+###TODO
+- send image
+- send file

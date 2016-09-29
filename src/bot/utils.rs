@@ -4,11 +4,8 @@ extern crate core;
 use std::io::Read;
 
 use self::hyper::Client;
-use self::hyper::header::Connection;
-use self::hyper::header::Basic;
 use self::hyper::header::{Headers, ContentType};
 use self::hyper::mime::{Mime, TopLevel, SubLevel, Attr, Value};
-use self::core::str::FromStr;
 
 
 pub struct UrlRequest { }
@@ -20,7 +17,7 @@ impl UrlRequest {
 
     pub fn post(self, url: String, data: String, body: String) -> String {
         // create request url
-        let mut request_url = format!("{}{}{}", url, "?", data);
+        let request_url = format!("{}{}{}", url, "?", data);
 
         // headers
         let mut headers = Headers::new();
@@ -29,8 +26,8 @@ impl UrlRequest {
                                      vec![(Attr::Charset, Value::Utf8)])
                                 ));
 
-        let mut client = Client::new();
-        let mut res = client.post(&request_url.to_owned())
+        let client = Client::new();
+        let res = client.post(&request_url.to_owned())
                             .headers(headers)
                             .body(&body.to_owned())
                             .send();

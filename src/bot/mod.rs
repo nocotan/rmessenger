@@ -20,11 +20,9 @@ impl Bot {
         let request_endpoint = format!("{}{}", self.graph_url, "/me/messages");
         let url_request = utils::UrlRequest::new();
 
-        let body = format!("{}{}", "access_token=", self.access_token);
+        let data = format!("{}{}", "access_token=", self.access_token).to_string();
 
-        let data = "{'recipient': {'id': 1156130217782534}, 'message': {'text': 'test'}}";
-        let response = url_request.post(request_endpoint.to_string(), body.to_string());
-
-
+        let body = "{'recipient': {'id': 1156130217782534}, 'message': {'text': 'test'}}".to_string();
+        let response = url_request.post(request_endpoint, data, body);
     }
 }

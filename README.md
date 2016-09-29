@@ -15,7 +15,7 @@ you can:
 ####Send text message
 https://developers.facebook.com/docs/messenger-platform/send-api-reference/text-message
 
-```send_text_message.rs
+```rust::send_text_message.rs
 extern crate rmessenger;
 use rmessenger::bot;
 

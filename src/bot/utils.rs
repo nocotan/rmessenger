@@ -29,13 +29,5 @@ impl UrlRequest {
         let mut b = String::new();
         res.unwrap().read_to_string(&mut b).unwrap();
         println!("{}", b);
-        //let request = Request::new(
-        //        Method::Post,
-        //        request_url.to_string().parse().expect("Failed to parse url.")
-        //    ).expect("Failed to create request.");
-
-        //let mut multipart = Multipart::from_request(request).expect("Failed to create multipart.");
-        //multipart.write_text("data", data.to_string());
-        //multipart.send().expect("Failed to send request")
     }
 }

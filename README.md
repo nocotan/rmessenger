@@ -40,6 +40,8 @@ fn main() {
 }
 ````
 
+> elements param is &str
+
 ###TODO
 - send image
 - send file

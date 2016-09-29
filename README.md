@@ -6,7 +6,8 @@
 
 ###About
 you can:
-- send message
+- send text message
+- send generic message
 
 ###Installation
 
@@ -39,6 +40,8 @@ fn main() {
                                 }]");
 }
 ````
+
+> elements param is &str
 
 ###TODO
 - send image

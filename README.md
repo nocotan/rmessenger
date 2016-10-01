@@ -10,12 +10,13 @@ you can:
 - send text message
 - send generic message
 - send button message
+- send file url
 
 ###Installation
 
 ####Cargo.toml
 ```
-rmessenger = "0.0.1"
+rmessenger = "0.0.3"
 ```
 
 ###Usage

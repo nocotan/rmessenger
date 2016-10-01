@@ -87,6 +87,7 @@ impl Bot {
         self.send_raw(payload.to_string())
     }
 
+    /// send payload.
     fn send_raw(self, payload: String) -> String {
         let request_endpoint = format!("{}{}", self.graph_url, "/me/messages");
         let url_request = utils::UrlRequest::new();

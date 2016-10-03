@@ -56,3 +56,4 @@ fn main() {
 - send image
 - send file
 - send audio
+- send video

@@ -3,7 +3,7 @@
 
 ##A Rust Wrapper for the FaceBook Messenger Bot API
 [Facebook's Messenger Platform](https://developers.facebook.com/docs/messenger-platform)  
-[Cargo](https://crates.io/crates/rmessenger)
+crates.io: [rmessenger](https://crates.io/crates/rmessenger)
 
 ###About
 you can:

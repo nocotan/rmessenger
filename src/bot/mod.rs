@@ -72,7 +72,7 @@ impl Bot {
     pub fn send_file_url(self, recipient_id: &str, file_url: &str) -> String {
         let payload = format!(
             "{{
-                'recipient_id': {{'id': {} }},
+                'recipient': {{'id': {} }},
                 'message': {{
                   'attachment': {{
                     'type': 'file',
@@ -83,6 +83,25 @@ impl Bot {
                 }}
               }}",
               recipient_id, file_url);
+
+        self.send_raw(payload.to_string())
+    }
+
+    /// send audio url to the specified recipient.
+    pub fn send_audio_url(self, recipient_id: &str, audio_url: &str) -> String {
+        let payload = format!(
+            "{{
+                'recipient': {{'id': {} }},
+                'message': {{
+                  'attachment': {{
+                    'type': 'audio',
+                    'payload': {{
+                      'url': {}
+                    }}
+                  }}
+                }}
+              }}",
+              recipient_id, audio_url);
 
         self.send_raw(payload.to_string())
     }

@@ -11,6 +11,7 @@ you can:
 - send generic message
 - send button message
 - send file url
+- send audio url
 
 ###Installation
 
@@ -54,3 +55,4 @@ fn main() {
 ###TODO
 - send image
 - send file
+- send audio

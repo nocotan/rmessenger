@@ -36,6 +36,7 @@ fn main() {
 ````
 
 ####Send generic message
+https://developers.facebook.com/docs/messenger-platform/send-api-reference/generic-template  
 
 ```rust
 extern crate rmessenger;

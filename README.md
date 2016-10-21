@@ -46,7 +46,7 @@ fn main() {
     let bot = bot::Bot::new("<YOUR ACCESS TOKEN>", "<YOUR APP SECRET>");
     bot.send_generic_message("<recipient_id>>",
                              "[{'title': 'example',
-                                'image_url': 'https://petersfancybrownhats.com/company_image.png'
+                                'image_url': 'https://example.png'
                                 }]");
 }
 ````

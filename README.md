@@ -1,11 +1,11 @@
 # rmessenger
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)  
 
-##A Rust Wrapper for the FaceBook Messenger Bot API
+## A Rust Wrapper for the FaceBook Messenger Bot API
 [Facebook's Messenger Platform](https://developers.facebook.com/docs/messenger-platform)  
 crates.io: [rmessenger](https://crates.io/crates/rmessenger)
 
-###About
+### About
 you can:
 - send text message
 - send generic message
@@ -13,16 +13,16 @@ you can:
 - send file url
 - send audio url
 
-###Installation
+### Installation
 
-####Cargo.toml
+#### Cargo.toml
 ```
 rmessenger = "0.0.4"
 ```
 
-###Usage
+### Usage
 
-####Send text message
+#### Send text message
 https://developers.facebook.com/docs/messenger-platform/send-api-reference/text-message
 
 ```rust
@@ -35,7 +35,7 @@ fn main() {
 }
 ````
 
-####Send generic message
+#### Send generic message
 https://developers.facebook.com/docs/messenger-platform/send-api-reference/generic-template  
 
 ```rust
@@ -53,7 +53,7 @@ fn main() {
 
 > elements param is &str
 
-###TODO
+### TODO
 - send image
 - send file
 - send audio

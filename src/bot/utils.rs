@@ -2,11 +2,11 @@ extern crate futures;
 extern crate hyper;
 extern crate core;
 extern crate tokio_core;
+extern crate hyper_tls;
 
 use self::futures::future::Future;
 use self::futures::Stream;
-use self::hyper::Client;
-use self::hyper::header::{Headers, ContentType};
+use self::hyper::header::ContentType;
 use self::hyper::mime::{Mime, TopLevel, SubLevel, Attr, Value};
 use self::hyper::Post;
 use self::hyper::client::Request;
@@ -19,25 +19,21 @@ impl UrlRequest {
     }
 
     pub fn post(self,
+                client: hyper::Client<hyper_tls::HttpsConnector>,
                 url: String,
                 data: String,
                 body: String)
                 -> Box<Future<Item = String, Error = hyper::Error>> {
-        // create request url
-        let request_url = format!("{}{}{}", url, "?", data);
-        let url = request_url.parse::<hyper::Uri>().unwrap();
-        // headers
-        let mut headers = Headers::new();
-        headers.set(ContentType(Mime(TopLevel::Application,
-                                     SubLevel::Json,
-                                     vec![(Attr::Charset, Value::Utf8)])));
 
-        let core = tokio_core::reactor::Core::new().unwrap();
-        let handle = core.handle();
-        let client = Client::new(&handle);
-        let mut request = Request::new(Post, url);
-        *(request.headers_mut()) = headers;
+        let request_url = format!("{}{}{}", url, "?", data).parse().unwrap();
+        let mut request = Request::new(Post, request_url);
+        request
+            .headers_mut()
+            .set(ContentType(Mime(TopLevel::Application,
+                                  SubLevel::Json,
+                                  vec![(Attr::Charset, Value::Utf8)])));
         request.set_body(body.to_owned());
+
         let fut = client
             .request(request)
             .and_then(|res| {

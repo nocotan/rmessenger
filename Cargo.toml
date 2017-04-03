@@ -1,6 +1,6 @@
 [package]
 name = "rmessenger"
-version = "0.0.4"
+version = "0.1.0"
 authors = ["nocotan <noconoco.lib@gmail.com>"]
 repository = "https://github.com/nocotan/rmessenger"
 keywords = ["facebook", "bot"]

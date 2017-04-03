@@ -8,11 +8,11 @@ use self::hyper::header::{Headers, ContentType};
 use self::hyper::mime::{Mime, TopLevel, SubLevel, Attr, Value};
 
 
-pub struct UrlRequest { }
+pub struct UrlRequest {}
 
 impl UrlRequest {
     pub fn new() -> UrlRequest {
-        UrlRequest { }
+        UrlRequest {}
     }
 
     pub fn post(self, url: String, data: String, body: String) -> String {
@@ -23,15 +23,15 @@ impl UrlRequest {
         let mut headers = Headers::new();
         headers.set(ContentType(Mime(TopLevel::Application,
                                      SubLevel::Json,
-                                     vec![(Attr::Charset, Value::Utf8)])
-                                ));
+                                     vec![(Attr::Charset, Value::Utf8)])));
 
         // client
         let client = Client::new();
-        let res = client.post(&request_url.to_owned())
-                            .headers(headers)
-                            .body(&body.to_owned())
-                            .send();
+        let res = client
+            .post(&request_url.to_owned())
+            .headers(headers)
+            .body(&body.to_owned())
+            .send();
 
         let mut response_body = String::new();
         res.unwrap().read_to_string(&mut response_body).unwrap();

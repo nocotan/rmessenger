@@ -1,21 +1,50 @@
 extern crate futures;
 extern crate hyper;
+extern crate url;
 
 mod utils;
 use self::futures::future::Future;
+use self::url::form_urlencoded;
 
+#[derive(Clone)]
 pub struct Bot {
     access_token: String,
     app_secret: String,
+    webhook_verify_token: String,
     graph_url: String,
 }
 
 impl Bot {
-    pub fn new(access_token: &str, app_secret: &str) -> Bot {
+    pub fn new(access_token: &str, app_secret: &str, webhook_verify_token: &str) -> Bot {
         Bot {
             access_token: access_token.to_string(),
             app_secret: app_secret.to_string(),
+            webhook_verify_token: webhook_verify_token.to_string(),
             graph_url: "https://graph.facebook.com/v2.7".to_string(),
+        }
+    }
+
+    /// Verify the Get query (after the ?) of a webhook verification request
+    /// (see https://developers.facebook.com/docs/graph-api/webhooks#setup)
+    /// and return either Some(hub.challenge) for you to put in the body of your
+    /// response, or None.
+    pub fn verify_webhook_query(&self, query: &str) -> Option<String> {
+        let mut maybe_hub_challenge = None;
+        let mut webhook_verify_token = false;
+
+        for (key, value) in form_urlencoded::parse(query.as_bytes()) {
+            if key == "hub.challenge" {
+                println!("hub.challenge received");
+                maybe_hub_challenge = Some(value.into_owned());
+            } else if key == "hub.verify_token" && value == self.webhook_verify_token {
+                println!("hub.verify_token passed");
+                webhook_verify_token = true;
+            }
+        }
+        if webhook_verify_token {
+            return maybe_hub_challenge;
+        } else {
+            return None;
         }
     }
 

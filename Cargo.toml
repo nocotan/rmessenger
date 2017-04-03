@@ -13,3 +13,4 @@ description = "A Rust Wrapper for the FaceBook Messenger Bot API"
 hyper = { git = "https://github.com/hyperium/hyper", branch = "master" }
 tokio-core = "0.1.6"
 futures = "0.1.11"
+url = "1.4.0"

@@ -1,4 +1,8 @@
+extern crate futures;
+extern crate hyper;
+
 mod utils;
+use self::futures::future::Future;
 
 pub struct Bot {
     access_token: String,
@@ -16,7 +20,10 @@ impl Bot {
     }
 
     /// send text messages to the specified recipient.
-    pub fn send_text_message(self, recipient_id: &str, message: &str) -> String {
+    pub fn send_text_message(self,
+                             recipient_id: &str,
+                             message: &str)
+                             -> Box<Future<Item = String, Error = hyper::Error>> {
         let payload = format!("
                               {{
                                  'recipient': {{'id': {} }},
@@ -29,7 +36,10 @@ impl Bot {
     }
 
     /// send generic message to the specified recipient.
-    pub fn send_generic_message(self, recipient_id: &str, elements: &str) -> String {
+    pub fn send_generic_message(self,
+                                recipient_id: &str,
+                                elements: &str)
+                                -> Box<Future<Item = String, Error = hyper::Error>> {
         let payload = format!("
                               {{
                                 'recipient': {{'id': {} }},
@@ -50,7 +60,11 @@ impl Bot {
     }
 
     /// send button message to the specified recipient.
-    pub fn send_button_message(self, recipient_id: &str, text: &str, buttons: &str) -> String {
+    pub fn send_button_message(self,
+                               recipient_id: &str,
+                               text: &str,
+                               buttons: &str)
+                               -> Box<Future<Item = String, Error = hyper::Error>> {
         let payload = format!("
                               {{
                                 'recipient': {{'id': {} }},
@@ -73,7 +87,10 @@ impl Bot {
     }
 
     /// send file url to the specified recipient.
-    pub fn send_file_url(self, recipient_id: &str, file_url: &str) -> String {
+    pub fn send_file_url(self,
+                         recipient_id: &str,
+                         file_url: &str)
+                         -> Box<Future<Item = String, Error = hyper::Error>> {
         let payload = format!("
                               {{
                                 'recipient': {{'id': {} }},
@@ -93,7 +110,10 @@ impl Bot {
     }
 
     /// send audio url to the specified recipient.
-    pub fn send_audio_url(self, recipient_id: &str, audio_url: &str) -> String {
+    pub fn send_audio_url(self,
+                          recipient_id: &str,
+                          audio_url: &str)
+                          -> Box<Future<Item = String, Error = hyper::Error>> {
         let payload = format!("
                               {{
                                 'recipient': {{'id': {} }},
@@ -113,12 +133,11 @@ impl Bot {
     }
 
     /// send payload.
-    fn send_raw(self, payload: String) -> String {
+    fn send_raw(self, payload: String) -> Box<Future<Item = String, Error = hyper::Error>> {
         let request_endpoint = format!("{}{}", self.graph_url, "/me/messages");
         let url_request = utils::UrlRequest::new();
 
         let data = format!("{}{}", "access_token=", self.access_token).to_string();
-
 
         url_request.post(request_endpoint, data, payload)
     }

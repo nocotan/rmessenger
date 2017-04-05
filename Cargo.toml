@@ -1,6 +1,6 @@
 [package]
 name = "rmessenger"
-version = "0.0.4"
+version = "0.1.0"
 authors = ["nocotan <noconoco.lib@gmail.com>"]
 repository = "https://github.com/nocotan/rmessenger"
 keywords = ["facebook", "bot"]
@@ -10,5 +10,9 @@ readme = "README.md"
 description = "A Rust Wrapper for the FaceBook Messenger Bot API"
 
 [dependencies]
-multipart = "0.8.1"
-hyper = "0.9.10"
+hyper = { git = "https://github.com/hyperium/hyper", branch = "master" }
+hyper-tls = { git = "https://github.com/hyperium/hyper-tls", branch = "master" }
+tokio-core = "0.1.6"
+futures = "0.1.11"
+url = "1.4.0"
+pretty_env_logger = "0.1"
